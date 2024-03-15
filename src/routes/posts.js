@@ -4,7 +4,7 @@ import Post from "../models/post.model.js"
 
 const router = Router()
 
-router.get("/posts", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
       // Fetch all posts from the database
       const posts = await Post.find();
@@ -24,7 +24,7 @@ router.get("/createPost", (req, res) => {
     // Check if user exists
     if (!req.user) {
       // Redirect to posts route if user doesn't exist
-      return res.redirect("/posts");
+      return res.redirect("/");
     }
   
     // Render your create post form here
@@ -38,7 +38,7 @@ router.post("/createPost", async(req, res) => {
         // Check if user exists
         if (!req.user) {
           // Redirect to posts route if user doesn't exist
-          return res.redirect("/posts");
+          return res.redirect("/");
         }
     
         const { title, content } = req.body;

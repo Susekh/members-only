@@ -10,8 +10,7 @@ router.get("/sign-up", (req, res) => res.render("sign-up-form"));
 
 router.post("/sign-up", async (req, res) => {
   try {
-    const { username, password, member, admin } = req.body;
-
+    const { username, password, member } = req.body;
      // Check if username already exists
      const existingUser = await User.findOne({ username });
      if (existingUser) {
@@ -23,16 +22,16 @@ router.post("/sign-up", async (req, res) => {
         throw err;
       } else {
          const user = new User({
-            username,
+            username : username,
             password: hashedPassword,
-            member,
-            admin
+            member : true,
+            admin : true
         });
         await user.save();
       }
     });
 
-    res.status(201).json({ message: "User created successfully" }).redirect("/");
+    res.redirect("/");
   } catch(err) {
     res.status(500).json({ message: "Server error" });
   };
