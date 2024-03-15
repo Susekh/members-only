@@ -1,0 +1,37 @@
+<!-- allPosts.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts</title>
+</head>
+<body>
+    <h1>All Posts</h1>
+    <% if (user && user.member) { %>
+        <p>Welcome, <%= user.username %>!</p>
+        <!-- Display user details -->
+        <p>User Details: <%= JSON.stringify(user) %></p>
+    <% } %>
+    
+    <% if (posts.length > 0) { %>
+        <ul>
+            <% posts.forEach(post => { %>
+                <li>
+                    <h2><%= post.title %></h2>
+                    <p><%= post.content %></p>
+                    <% if (user && user.member) { %>
+                        <!-- Show author and createdOn details only if user is a member -->
+                        <p>Author: <%= post.author %></p>
+                        <p>Created On: <%= post.createdOn.toDateString() %></p>
+                    <% } else { %>
+                        <p>Become a member to view the details of the author.</p>
+                    <% } %>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No posts available.</p>
+    <% } %>
+</body>
+</html>
