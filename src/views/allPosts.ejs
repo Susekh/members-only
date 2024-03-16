@@ -10,8 +10,6 @@
     <h1>All Posts</h1>
     <% if (user && user.member) { %>
         <p>Welcome, <%= user.username %>!</p>
-        <!-- Display user details -->
-        <p>User Details: <%= JSON.stringify(user) %></p>
     <% } %>
     
     <% if (posts.length > 0) { %>

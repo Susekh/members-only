@@ -26,9 +26,9 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.use("/", indexRouter);
-app.use("/", signupRouter);
-app.use("/", loginRouter);
-app.use("/", logoutRouter);
+app.use("/auth", signupRouter);
+app.use("/auth", loginRouter);
+app.use("/auth", logoutRouter);
 app.use("/posts", postRouter);
 
 

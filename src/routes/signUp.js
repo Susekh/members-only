@@ -17,7 +17,7 @@ router.post("/sign-up", async (req, res) => {
        return res.status(400).json({ message: "Username already exists" });
      }
 
-    bcrypt.hash(password, 10, async (err, hashedPassword) => {
+    bcrypt.hash(password, 10, async(err, hashedPassword) => {
       if(err){
         throw err;
       } else {
