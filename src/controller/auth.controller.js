@@ -1,5 +1,5 @@
 import asyncHandler from "../utils/asyncHandler.js"
-import passport from "../utils/passport/passport.js"
+import passport from "../middleware/passport/passport.js"
 import bcrypt from "bcryptjs"
 import User from "../models/user.model.js"
 
