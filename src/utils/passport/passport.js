@@ -1,7 +1,7 @@
 import passport from "passport";
 import LocalStrategy from "passport-local"
 import User from "../../models/user.model.js"
-import { bcrypt } from "../../routes/signUp.js";
+import { bcrypt } from "../../controller/auth.controller.js";
 
 
 passport.use(
@@ -10,7 +10,7 @@ passport.use(
         const user = await User.findOne({ username: username });
         if (!user) {
           return done(null, false, { message: "Incorrect username" });
-        };
+        }
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
           // passwords do not match!
@@ -19,7 +19,7 @@ passport.use(
         return done(null, user);
       } catch(err) {
         return done(err);
-      };
+      }
     })
   );
   
@@ -34,7 +34,7 @@ passport.use(
       done(null, user);
     } catch(err) {
       done(err);
-    };
+    }
   });
 
 

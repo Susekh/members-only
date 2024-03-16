@@ -8,7 +8,6 @@ import signupRouter from "./routes/signUp.js"
 import loginRouter from "./routes/login.js"
 import logoutRouter from "./routes/logout.js"
 import postRouter from "./routes/posts.js"
-import Post from "./models/post.model.js";
 
 
 
