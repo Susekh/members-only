@@ -40,7 +40,7 @@ const signUpPost = asyncHandler(
 )
 
 
-const signUpGet = (req, res) => res.render("sign-up-form")
+const signUpGet = (req, res) => res.render("sign-up-form", {user : req.user})
 
 
 

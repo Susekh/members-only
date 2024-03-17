@@ -8,10 +8,17 @@
 </head>
 <body>
     <%- include('header'); -%>
-    <h1>All Posts</h1>
-    <% if (user && user.member) { %>
-        <p>Welcome, <%= user.username %>!</p>
-    <% } %>
+    <div>
+        <div>
+            <h1>All Posts</h1>
+            <% if (user && user.member) { %>
+                <p>Welcome, <%= user.username %>!</p>
+            <% } %>
+        </div>
+        <div>
+            <a href="/posts/createPost">Add your post</a>
+        </div>
+    </div>
     
     <% if (posts.length > 0) { %>
         <ul>

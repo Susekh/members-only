@@ -8,7 +8,7 @@
   <%- include('header'); -%>
   <% if (user) {%>
     <h1>WELCOME <%= user.username %></h1>
-    <a href="/auth/log-out">LOG OUT</a>
+    <a href="/posts">See Posts</a><br>
   <% } else { %>
     <h1>please log in</h1>
     <form action="/auth/log-in" method="POST">

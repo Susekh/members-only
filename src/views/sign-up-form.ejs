@@ -6,14 +6,18 @@
 </head>
 <body>
   <%- include('header'); -%>
-  <h1>Sign Up</h1>
-  <form action="/auth/sign-up" method="POST">
-    <label for="username">Username</label>
-    <input name="username" placeholder="username" type="text" />
-    <label for="password">Password</label>
-    <input name="password" type="password" />
-    <button>Sign Up</button>
-  </form>
+  <% if (!user) {%>
+    <h1>Sign Up</h1>
+    <form action="/auth/sign-up" method="POST">
+      <label for="username">Username</label>
+      <input name="username" placeholder="username" type="text" />
+      <label for="password">Password</label>
+      <input name="password" type="password" />
+      <button>Sign Up</button>
+    </form>
+  <%} else {%>
+    <h2>User is already logged in</h2>
+  <%}%>
   <%- include('footer'); -%>
 </body>
 </html>

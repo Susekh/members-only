@@ -25,7 +25,7 @@ const createPost_Get = (req, res) => {
   
     // Render your create post form here
     // For simplicity, assuming a placeholder 'createPostForm.ejs' template
-    res.render("createPostForm");
+    res.render("createPostForm", {user : req.user});
 }
 
 
@@ -53,7 +53,7 @@ const createPost_Post = asyncHandler(async(req, res) => {
         // Save the post to the database
         await newPost.save();
     
-        res.status(201).json({ message: "Post created successfully", post: newPost });
+        res.status(201).redirect("/posts");
       } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Server error" });

@@ -4,10 +4,19 @@
             <a href="/">Home</a>
         </li>
         <li>
-            <a href="/auth/log-in">Login</a>
+            <a href="/">Login</a>
         </li>
         <li>
             <a href="/auth/sign-up">Sign-up</a>
         </li>
+        <li>
+            <a href="/posts">Posts</a>
+        </li>
+        <% if (user) {%>
+            <li>
+                <a href="/auth/log-out">LOG OUT</a>
+            </li>
+        <%}%>
+
     </ul>
 </header>
