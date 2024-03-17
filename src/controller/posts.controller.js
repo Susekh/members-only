@@ -14,8 +14,6 @@ const showPosts = asyncHandler(async (req, res) => {
           const authorName = author ? author.username : 'Unknown'; 
           return { ...post.toObject(), authorName }; 
         }));
-      
-        console.log(postsWithAuthorNames);
         res.render("allPosts", { posts : postsWithAuthorNames, user : req.user});
       }
       // Render the 'allPosts.ejs' template with the posts data

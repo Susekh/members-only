@@ -109,6 +109,16 @@ const member_post = asyncHandler(
 )
 
 
+// Show Member Secret Code
+const member_code_get = asyncHandler(
+  async(req, res) => {
+    const user = await User.findById(req.user._id);
+    const code = user.memberCode;
+
+    res.render("member_code", {user : req.user, code : code})
+  }
+)
+
 export {
     signUpGet,
     signUpPost,
@@ -117,5 +127,6 @@ export {
     logout,
     bcrypt,
     member_get,
-    member_post
+    member_post,
+    member_code_get
 }
