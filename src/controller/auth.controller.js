@@ -2,6 +2,8 @@ import asyncHandler from "../utils/asyncHandler.js"
 import passport from "../middleware/passport/passport.js"
 import bcrypt from "bcryptjs"
 import User from "../models/user.model.js"
+import { validationResult } from "express-validator"
+
 
 
 
@@ -23,36 +25,43 @@ function generateMemberString() {
 
 
 const signUpPost = asyncHandler(
-    async (req, res) => {
-        try {
-          const { username, password } = req.body;
-           // Check if username already exists
-           const existingUser = await User.findOne({ username });
-           if (existingUser) {
-             return res.status(400).json({ message: "Username already exists" });
-           }
-      
-          bcrypt.hash(password, 10, async(err, hashedPassword) => {
-            if(err){
-              throw err;
-            } else {
-              const memCode = generateMemberString();
-               const user = new User({
-                  username : username,
-                  password: hashedPassword,
-                  member : false,
-                  admin : true,
-                  memberCode : memCode
-              });
-              await user.save();
-            }
-          });
-      
-          res.redirect("/");
-        } catch(err) {
-          res.status(500).json({ message: "Server error" });
+    
+      async (req, res) => {
+        const errors = validationResult(req);
+        if(errors.isEmpty()){
+          try {
+            const { username, password } = req.body;
+             // Check if username already exists
+             const existingUser = await User.findOne({ username });
+             if (existingUser) {
+               return res.status(400).json({ message: "Username already exists" });
+             }
+        
+            bcrypt.hash(password, 10, async(err, hashedPassword) => {
+              if(err){
+                throw err;
+              } else {
+                const memCode = generateMemberString();
+                 const user = new User({
+                    username : username,
+                    password: hashedPassword,
+                    member : false,
+                    admin : true,
+                    memberCode : memCode
+                });
+                await user.save();
+              }
+            });
+        
+            res.redirect("/");
+          } catch(err) {
+            res.status(500).json({ message: "Server error" });
+          }
+        } else {
+          res.render("errPage", { errors : errors.array() , user : req.user});
         }
       }
+    
 )
 
 
@@ -67,10 +76,7 @@ const login_get = (req, res) =>  {
 }
 
 
-const login_post = passport.authenticate("local", {
-        successRedirect: "/",
-        failureRedirect: "/"
-      })
+const login_post = passport.authenticate("local", { successRedirect: '/posts', failureRedirect: '/auth/log-in', failureMessage: true })
 
 
 
@@ -94,18 +100,22 @@ const member_get = (req, res) => {
 }
 
 const member_post = asyncHandler(
-  async (req, res) => {
-    const member = req.body.member;
-    const userId = req.user._id;
-    // Find the user by ID
-    const user = await User.findById(userId);
-    if(member === user.memberCode){
-      user.member = true;
-      await user.save();
-      res.redirect("/posts")
-    }
   
-  }
+    async (req, res) => {
+          const member = req.body.member;
+          const userId = req.user._id;
+          // Find the user by ID
+          const user = await User.findById(userId);
+          if(member === user.memberCode){
+            user.member = true;
+            await user.save();
+            res.redirect("/posts")
+          }  else {
+            res.redirect("/auth/member")
+          }
+      }
+    
+    
 )
 
 

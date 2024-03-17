@@ -6,9 +6,9 @@
   <h1>please log in</h1>
   <form action="/auth/log-in" method="POST">
     <label for="username">Username</label>
-    <input name="username" placeholder="username" type="text" />
+    <input name="username" placeholder="username" type="text" minlength="3"  required />
     <label for="password">Password</label>
-    <input name="password" type="password" />
+    <input name="password" type="password" minlength="3" required />
     <button>Log In</button>
   </form>
 <%}%>
