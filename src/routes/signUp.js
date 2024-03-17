@@ -9,4 +9,4 @@ router.get("/sign-up", signUpGet);
 router.post("/sign-up", signUpPost);
 
 
-export default router
+export default router 

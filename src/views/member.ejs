@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member</title>
+</head>
+<body>
+    <%- include('header'); -%>
+    <% if (user) {%>
+        <% if (user.member) {%>
+            <p>You're already a member of the club!</p>
+        <%} else {%>
+            <h2>Enter the secret code to become a member</h2>
+            <form action="/auth/member" method="post">
+                <label for="member">Enter the Code : </label>
+                <input name="member" placeholder="member" type="text">
+                <button type="submit">Submit</button>
+            </form>
+        <%}%>
+    <%} else {%>
+        <h2>User not Logged in</h2>
+    <%}%>
+    <%- include('footer'); -%>
+</body>
+</html>

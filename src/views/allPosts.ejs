@@ -28,10 +28,11 @@
                     <p><%= post.content %></p>
                     <% if (user && user.member) { %>
                         <!-- Show author and createdOn details only if user is a member -->
-                        <p>Author: <%= post.author %></p>
+                        <p>Author: <%= post.authorName %></p>
                         <p>Created On: <%= post.createdOn.toDateString() %></p>
                     <% } else { %>
                         <p>Become a member to view the details of the author.</p>
+                        <a href="/auth/member">Become a Member</a>
                     <% } %>
                 </li>
             <% }); %>

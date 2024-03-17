@@ -21,6 +21,10 @@ const userSchema = new Schema({
     admin : {
         type : Boolean,
         require : true
+    },
+    memberCode : {
+        type : String,
+        require : true
     }
 })
 

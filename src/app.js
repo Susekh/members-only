@@ -8,6 +8,7 @@ import signupRouter from "./routes/signUp.js"
 import loginRouter from "./routes/login.js"
 import logoutRouter from "./routes/logout.js"
 import postRouter from "./routes/posts.js"
+import memberRouter from "./routes/member.js"
 
 
 
@@ -28,6 +29,7 @@ app.use("/", indexRouter);
 app.use("/auth", signupRouter);
 app.use("/auth", loginRouter);
 app.use("/auth", logoutRouter);
+app.use("/auth", memberRouter);
 app.use("/posts", postRouter);
 
 
