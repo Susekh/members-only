@@ -13,11 +13,13 @@ const showPosts = asyncHandler(async (req, res) => {
           const author = await User.findById(post.author);
           const authorName = author ? author.username : 'Unknown'; 
           return { ...post.toObject(), authorName }; 
-        }));
+        }))
         res.render("allPosts", { posts : postsWithAuthorNames, user : req.user});
+      } else {
+        // Render the 'allPosts.ejs' template with the posts data
+        res.render("allPosts", { posts, user : req.user});
       }
-      // Render the 'allPosts.ejs' template with the posts data
-      res.render("allPosts", { posts, user : req.user});
+      
     } catch (error) {
       // Handle errors
       res.status(500).json({ message: "Server error" });
@@ -55,8 +57,35 @@ const createPost_Post = asyncHandler(async(req, res) => {
 })
 
 
+const delete_Post = asyncHandler(
+  async(req, res) => {
+    const postId = req.params.postId;
+
+    const post = await Post.findById(postId);
+
+    if (!post) {
+      return res.status(404).send('Post not found');
+    }
+
+
+    if (post.author.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: 'You are not authorized to delete this post' });
+    }
+    // Perform any necessary authorization checks here
+
+    // Delete the post
+    await Post.findByIdAndDelete(postId);
+
+    // Redirect or send a success response
+    res.redirect('/posts');
+
+  }
+)
+
+
 export {
     showPosts,
     createPost_Get,
-    createPost_Post
+    createPost_Post,
+    delete_Post
 }

@@ -34,6 +34,13 @@
                         <p>Become a member to view the details of the author.</p>
                         <a href="/auth/member">Become a Member</a>
                     <% } %>
+                    <% if (user) { %>
+                        <%if (user.id.toString() === post.author.toString()) {%>
+                            <form action="/posts/delete/<%= post._id %>" method="post">
+                                <button type="submit">Delete</button>
+                            </form>
+                        <%}%>
+                    <% } %>   
                 </li>
             <% }); %>
         </ul>
