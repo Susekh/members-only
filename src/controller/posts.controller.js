@@ -17,29 +17,14 @@ const showPosts = asyncHandler(async (req, res) => {
 
 
 const createPost_Get = (req, res) => {
-    // Check if user exists
-    if (!req.user) {
-      // Redirect to posts route if user doesn't exist
-      return res.redirect("/");
-    }
-  
-    // Render your create post form here
-    // For simplicity, assuming a placeholder 'createPostForm.ejs' template
     res.render("createPostForm", {user : req.user});
 }
 
 
 const createPost_Post = asyncHandler(async(req, res) => {
     try {
-        // Check if user exists
-        if (!req.user) {
-          // Redirect to posts route if user doesn't exist
-          return res.redirect("/");
-        }
-    
         const { title, content } = req.body;
     
-        
         const author = req.user._id;
     
         // Create a new post

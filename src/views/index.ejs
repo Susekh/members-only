@@ -10,14 +10,7 @@
     <h1>WELCOME <%= user.username %></h1>
     <a href="/posts">See Posts</a><br>
   <% } else { %>
-    <h1>please log in</h1>
-    <form action="/auth/log-in" method="POST">
-      <label for="username">Username</label>
-      <input name="username" placeholder="username" type="text" />
-      <label for="password">Password</label>
-      <input name="password" type="password" />
-      <button>Log In</button>
-    </form>
+    <a href="/posts">See all Posts</a>
   <%}%>
   <%- include('footer'); -%>
 </body>

@@ -46,7 +46,12 @@ const signUpGet = (req, res) => res.render("sign-up-form", {user : req.user})
 
 //Login part
 
-const login = passport.authenticate("local", {
+const login_get = (req, res) =>  {
+  res.render("log-in-form", {user : req.user})
+}
+
+
+const login_post = passport.authenticate("local", {
         successRedirect: "/",
         failureRedirect: "/"
       })
@@ -61,7 +66,7 @@ const logout = (req, res, next) => {
                 if (err) {
                     return next(err);
                 }
-                res.redirect("/");
+                res.redirect("/auth/log-in");
                 });
             }
 
@@ -70,7 +75,8 @@ const logout = (req, res, next) => {
 export {
     signUpGet,
     signUpPost,
-    login,
+    login_get,
+    login_post,
     logout,
     bcrypt
 }

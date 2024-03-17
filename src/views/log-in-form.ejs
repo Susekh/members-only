@@ -1,10 +1,15 @@
 <%- include('header'); -%>
-<h1>please log in</h1>
-<form action="/auth/log-in" method="POST">
-  <label for="username">Username</label>
-  <input name="username" placeholder="username" type="text" />
-  <label for="password">Password</label>
-  <input name="password" type="password" />
-  <button>Log In</button>
-</form>
+<% if (user) {%>
+  <h2>User already logged in, logout to login into another account</h2>
+  <a href="/auth/log-out">LOG OUT</a>
+<%} else {%>
+  <h1>please log in</h1>
+  <form action="/auth/log-in" method="POST">
+    <label for="username">Username</label>
+    <input name="username" placeholder="username" type="text" />
+    <label for="password">Password</label>
+    <input name="password" type="password" />
+    <button>Log In</button>
+  </form>
+<%}%>
 <%- include('footer'); -%>
