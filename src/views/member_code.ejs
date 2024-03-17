@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styleSheet/style.css">
     <title>Member Code</title>
 </head>
 <body>
     <%- include('header'); -%>
-    <% if (user) {%>
-        <h2>Your secret membership code : <%= code %></h2>
-    <%} else {%>
-        <h2>you're not logged in </h2>
-        <a href="/auth/log-in">LOG IN</a>
-    <%}%>
+    <main>
+        <% if (user) {%>
+            <h2>Your secret membership code : <%= code %></h2>
+        <%} else {%>
+            <h2>you're not logged in </h2>
+            <a href="/auth/log-in">LOG IN</a>
+        <%}%>
+    </main>
     <%- include('footer'); -%>
 </body>
 </html>

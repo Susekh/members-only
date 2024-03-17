@@ -1,15 +1,29 @@
-<%- include('header'); -%>
-<% if (user) {%>
-  <h2>User already logged in, logout to login into another account</h2>
-  <a href="/auth/log-out">LOG OUT</a>
-<%} else {%>
-  <h1>please log in</h1>
-  <form action="/auth/log-in" method="POST">
-    <label for="username">Username</label>
-    <input name="username" placeholder="username" type="text" minlength="3"  required />
-    <label for="password">Password</label>
-    <input name="password" type="password" minlength="3" required />
-    <button>Log In</button>
-  </form>
-<%}%>
-<%- include('footer'); -%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="/styleSheet/style.css">
+  <title>log-in</title>
+</head>
+<body>
+    <%- include('header'); -%>
+     <main>
+      <% if (user) {%>
+        <h2>User already logged in, logout to login into another account</h2>
+        <a class="btn-style" href="/auth/log-out">LOG OUT</a>
+      <%} else {%>
+        <h1>please log in</h1>
+        <form action="/auth/log-in" method="POST">
+          <label for="username">Username</label>
+          <input name="username" placeholder="username" type="text" minlength="3"  required />
+          <label for="password">Password</label>
+          <input name="password" type="password" minlength="3" required />
+          <button class="btn-style">Log In</button>
+        </form>
+      <%}%>
+     </main>
+    <%- include('footer'); -%>
+</body>
+</html>
+

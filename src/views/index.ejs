@@ -2,16 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>Index</title>
+  <link rel="stylesheet" type="text/css" href="/styleSheet/style.css">
 </head>
 <body>
   <%- include('header'); -%>
-  <% if (user) {%>
-    <h1>WELCOME <%= user.username %></h1>
-    <a href="/posts">See Posts</a><br>
-  <% } else { %>
-    <a href="/posts">See all Posts</a>
-  <%}%>
+  <main>
+    <% if (user) {%>
+      <h1>WELCOME <%= user.username %></h1>
+      <a class="btn-style" href="/posts">See Posts</a><br>
+    <% } else { %>
+      <h1>See messages written by peoples from around the world : </h1>
+      <a class="btn-style" href="/posts">See all Posts</a>
+    <%}%>
+  </main>
   <%- include('footer'); -%>
 </body>
 </html>
+
+

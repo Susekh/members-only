@@ -4,49 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styleSheet/style.css">
     <title>All Posts</title>
 </head>
 <body>
     <%- include('header'); -%>
-    <div>
+    <main class="posts-main">
         <div>
-            <h1>All Posts</h1>
-            <% if (user && user.member) { %>
-                <p>Welcome, <%= user.username %>!</p>
-            <% } %>
+            <div>
+                <h1>All Posts</h1>
+                <% if (user && user.member) { %>
+                    <p>Welcome, <%= user.username %>!</p>
+                <% } %>
+            </div>
+            <div>
+                <a class="btn-style" href="/posts/createPost">Add your post</a>
+            </div>
         </div>
-        <div>
-            <a href="/posts/createPost">Add your post</a>
-        </div>
-    </div>
-    
-    <% if (posts.length > 0) { %>
-        <ul>
-            <% posts.forEach(post => { %>
-                <li>
-                    <h2><%= post.title %></h2>
-                    <p><%= post.content %></p>
-                    <% if (user && user.member) { %>
-                        <!-- Show author and createdOn details only if user is a member -->
-                        <p>Author: <%= post.authorName %></p>
-                        <p>Created On: <%= post.createdOn.toDateString() %></p>
-                    <% } else { %>
-                        <p>Become a member to view the details of the author.</p>
-                        <a href="/auth/member">Become a Member</a>
-                    <% } %>
-                    <% if (user) { %>
-                        <%if (user.id.toString() === post.author.toString()) {%>
-                            <form action="/posts/delete/<%= post._id %>" method="post">
-                                <button type="submit">Delete</button>
-                            </form>
-                        <%}%>
-                    <% } %>   
-                </li>
-            <% }); %>
-        </ul>
-    <% } else { %>
-        <p>No posts available.</p>
-    <% } %>
+        
+        <% if (posts.length > 0) { %>
+            <ul class="post-ul-style">
+                <% posts.forEach(post => { %>
+                    <li class="post-card-style">
+                        <h2><%= post.title %></h2>
+                        <p><%= post.content %></p>
+                        <% if (user && user.member) { %>
+                            <!-- Show author and createdOn details only if user is a member -->
+                            <p>Author: <%= post.authorName %></p>
+                            <p>Created On: <%= post.createdOn.toDateString() %></p>
+                        <% } else { %>
+                            <p>Become a member to view the details of the author.</p>
+                            <a class="btn-style" href="/auth/member">Become a Member</a>
+                        <% } %>
+                        <% if (user) { %>
+                            <%if (user.id.toString() === post.author.toString()) {%>
+                                <form action="/posts/delete/<%= post._id %>" method="post">
+                                    <button class="btn-style" type="submit">Delete</button>
+                                </form>
+                            <%}%>
+                        <% } %>   
+                    </li>
+                <% }); %>
+            </ul>
+        <% } else { %>
+            <p>No posts available.</p>
+        <% } %>
+    </main>
     <%- include('footer'); -%>
 </body>
 </html>

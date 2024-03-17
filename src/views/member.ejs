@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styleSheet/style.css">
     <title>Member</title>
 </head>
 <body>
     <%- include('header'); -%>
-    <% if (user) {%>
-        <% if (user.member) {%>
-            <p>You're already a member of the club!</p>
+    <main>
+        <% if (user) {%>
+            <% if (user.member) {%>
+                <p>You're already a member of the club!</p>
+            <%} else {%>
+                <h2>Enter the secret code to become a member</h2>
+                <form action="/auth/member" method="post">
+                    <label for="member">Enter the Code : </label>
+                    <input name="member" placeholder="member" type="text" required>
+                    <button class="btn-style" type="submit">Submit</button>
+                </form>
+                <p style="margin: 2rem 0;">Don't know your code? get it from the link below.</p>
+                <a class="btn-style" href="/auth/member-code">Get code</a>
+            <%}%>
         <%} else {%>
-            <h2>Enter the secret code to become a member</h2>
-            <form action="/auth/member" method="post">
-                <label for="member">Enter the Code : </label>
-                <input name="member" placeholder="member" type="text" required>
-                <button type="submit">Submit</button>
-            </form>
-            <p>Don't know your code? get it from the link below.</p>
-            <a href="/auth/member-code">Get code</a>
+            <h2>User not Logged in</h2>
         <%}%>
-    <%} else {%>
-        <h2>User not Logged in</h2>
-    <%}%>
+    </main>
     <%- include('footer'); -%>
 </body>
 </html>

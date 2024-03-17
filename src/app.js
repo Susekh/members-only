@@ -22,6 +22,7 @@ app.set('view engine', 'ejs');
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static('public'));
 
 
 
