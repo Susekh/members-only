@@ -7,6 +7,7 @@
     <title>Create Post</title>
 </head>
 <body>
+    <%- include('header'); -%>
     <h1>Create New Post</h1>
     <form action="/posts/createPost" method="POST">
         <div>
@@ -19,5 +20,6 @@
         </div>
         <button type="submit">Create Post</button>
     </form>
+    <%- include('footer'); -%>
 </body>
 </html>

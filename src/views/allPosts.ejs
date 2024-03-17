@@ -7,6 +7,7 @@
     <title>All Posts</title>
 </head>
 <body>
+    <%- include('header'); -%>
     <h1>All Posts</h1>
     <% if (user && user.member) { %>
         <p>Welcome, <%= user.username %>!</p>
@@ -31,5 +32,6 @@
     <% } else { %>
         <p>No posts available.</p>
     <% } %>
+    <%- include('footer'); -%>
 </body>
 </html>
